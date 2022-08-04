@@ -44,13 +44,15 @@ def preprocess(text):
 
 ################# WEBSITE #################
 
-# # Page appearance
-# st.set_page_config(
-#     page_title="Movie Review Analyser",
-#     page_icon="🍿",
-#     layout="wide",
-#     initial_sidebar_state="auto",
-# )
+# Page appearance
+st.set_page_config(
+    page_title="Movie Review Analyser",
+    page_icon="🍿",
+    layout="wide",
+    initial_sidebar_state="auto",
+)
+
+# need to adapt style
 # with open('style.css') as f:
 #     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
@@ -80,16 +82,18 @@ if user_text is not None:
     vectorized_review = pd.DataFrame(vectorized_review.toarray(),
                                         columns = vectorizer.get_feature_names_out())
 
-    # transform vectorized_review & get probability of belonging to positive/negative sentiment
+
+    # transform vectorized_review & get prediction
     mixture = model.transform(vectorized_review)
 
-    # make into pretty dataframe and print
+    # make into pretty dataframe
     topics = pd.DataFrame(mixture)
-    topics['review'] = clean_text
 
-    # most likely sentiment
+    # dummy code
+    # get most likely sentiment
     result = max(topics[0])
 
+    # display sentiment
     st.header('Prediction:')
     if result == topics[0][0]:
         st.error("Didn't like the movie")
