@@ -16,7 +16,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 ################# MODEL ##################
 
 # parameters
-MODEL='Model_3band_RGB_ha/'
+MODEL='Model_3band_RGB/'
 BUCKET='wagon-data-batch913-drought_detection'
 STORAGE_LOCATION = f'gs://{BUCKET}/SavedModel/{MODEL}' # GCP path
 
@@ -24,7 +24,7 @@ STORAGE_LOCATION = f'gs://{BUCKET}/SavedModel/{MODEL}' # GCP path
 @st.cache
 def load_model():
     return tf.saved_model.load(STORAGE_LOCATION)
-    # return hub.load(MODEL)
+    # return hub.load(MODEL) # alternative way to load model, depending on how/where we save it
 
 model = load_model()
 
@@ -42,14 +42,12 @@ def preprocess(text):
 
 
 
-
-
 ################# WEBSITE #################
 
 # # Page appearance
 # st.set_page_config(
-#     page_title="Pixel Perfect",
-#     page_icon="💫",
+#     page_title="Movie Review Analyser",
+#     page_icon="🍿",
 #     layout="wide",
 #     initial_sidebar_state="auto",
 # )
@@ -67,36 +65,30 @@ st.markdown("""
 
 st.header("Let's write a review")
 
-user_text = st.text_area('Add a review:', '''
+user_text = st.text_area('Add your review:', '''
     ''')
 
 if user_text is not None:
 
-    # Clean reviews
+    # Clean review
     clean_text = preprocess(user_text)
 
-    # Vectorizing the sentences
-    vectorizer = TfidfVectorizer()
-    neg_pos_review_vectorized = vectorizer.fit_transform(data.clean_reviews)
+    # st.write('preprocessed review:', clean_text)
 
-    # vectorize new example
-    vectorized_example = vectorizer.transform(clean_text) # need vectorizer that was fit on train data
-    vectorized_example = pd.DataFrame(vectorized_example.toarray(),
+    # vectorize review (need original vectorizer)
+    vectorized_review = vectorizer.transform(clean_text) # need vectorizer that was fit on train data
+    vectorized_review = pd.DataFrame(vectorized_review.toarray(),
                                         columns = vectorizer.get_feature_names_out())
 
-    # transform vectorized_example & get probability of belonging to topics
-    mixture = model.transform(vectorized_example)
+    # transform vectorized_review & get probability of belonging to positive/negative sentiment
+    mixture = model.transform(vectorized_review)
 
     # make into pretty dataframe and print
     topics = pd.DataFrame(mixture)
     topics['review'] = clean_text
 
-    # use predict function
+    # most likely sentiment
     result = max(topics[0])
-
-    st.title("Here your review after we preprocessed it")
-    st.write('Your preprocessed review:', clean_text)
-
 
     st.header('Prediction:')
     if result == topics[0][0]:
