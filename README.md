@@ -1,10 +1,9 @@
 # Data analysis
 - Document here the project: NLPmoviereviews
-- Description: Project Description
-- Data Source:
+- Description: Use ML/DL to perform sentiment anaylsis on movie reviews
+- Data Source: Tensorflow imdb reviews dataset
 - Type of analysis:
 
-Please document the project the better you can.
 
 # Startup the project
 
@@ -22,15 +21,15 @@ Unittest test:
 make clean install test
 ```
 
-Check for NLPmoviereviews in gitlab.com/{group}.
+Check for NLPmoviereviews in gitlab.com/sridhar211.
 If your project is not set please add it:
 
-- Create a new project on `gitlab.com/{group}/NLPmoviereviews`
+- Create a new project on `gitlab.com/sridhar211/NLPmoviereviews`
 - Then populate it:
 
 ```bash
-##   e.g. if group is "{group}" and project_name is "NLPmoviereviews"
-git remote add origin git@github.com:{group}/NLPmoviereviews.git
+##   e.g. if group is "sridhar211" and project_name is "NLPmoviereviews"
+git remote add origin git@github.com:sridhar211/NLPmoviereviews.git
 git push -u origin master
 git push -u origin --tags
 ```
@@ -46,7 +45,7 @@ NLPmoviereviews-run
 
 # Install
 
-Go to `https://github.com/{group}/NLPmoviereviews` to see the project, manage issues,
+Go to `https://github.com/sridhar211/NLPmoviereviews` to see the project, manage issues,
 setup you ssh public key, ...
 
 Create a python3 virtualenv and activate it:
@@ -59,7 +58,7 @@ deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
 Clone the project and install it:
 
 ```bash
-git clone git@github.com:{group}/NLPmoviereviews.git
+git clone git@github.com:sridhar211/NLPmoviereviews.git
 cd NLPmoviereviews
 pip install -r requirements.txt
 make clean install test                # install and test
