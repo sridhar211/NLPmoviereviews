@@ -1,45 +1,26 @@
 import streamlit as st
 import numpy as np
-import tensorflow as tf
-import tensorflow_hub as hub
-import string
-from nltk.corpus import stopwords
-from nltk import word_tokenize
-from nltk.stem import WordNetLemmatizer
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
+import gensim.downloader as api
 
-# from tensorflow.keras.models import load_model
-# import plotly.express as px
+from tensorflow.keras.models import load_model
+from NLPmoviereviews.main import predict_score
 
 
 ################# MODEL ##################
 
 # parameters
-MODEL='Model_3band_RGB/'
-BUCKET='wagon-data-batch913-drought_detection'
-STORAGE_LOCATION = f'gs://{BUCKET}/SavedModel/{MODEL}' # GCP path
+MODEL='saved_model/nlp_model/'
+
 
 # load model (cache so it only loads once and saves time)
-@st.cache
-def load_model():
-    return tf.saved_model.load(STORAGE_LOCATION)
-    # return hub.load(MODEL) # alternative way to load model, depending on how/where we save it
+#@st.cache
+def load_model_cache():
+    model=load_model(MODEL)
+    #word2vec=api.load('glove-wiki-gigaword-100')
+    return model
 
-model = load_model()
-
-
-################# FUNCTIONS ##################
-
-# preprocessing (possibly move to "utilities.py" file)
-def preprocess(text):
-    text = text.strip() ## remove whitespaces
-    text = text.lower() ## lowercase
-    text = ''.join(char for char in text if not char.isdigit()) # remove numbers
-    for punctuation in string.punctuation:
-        text = text.replace(punctuation, '') # remove punctuation
-    return text
-
+model = load_model_cache()
 
 
 ################# WEBSITE #################
@@ -72,30 +53,11 @@ user_text = st.text_area('Add your review:', '''
 
 if user_text is not None:
 
-    # Clean review
-    clean_text = preprocess(user_text)
-
-    # st.write('preprocessed review:', clean_text)
-
-    # vectorize review (need original vectorizer)
-    vectorized_review = vectorizer.transform(clean_text) # need vectorizer that was fit on train data
-    vectorized_review = pd.DataFrame(vectorized_review.toarray(),
-                                        columns = vectorizer.get_feature_names_out())
-
-
-    # transform vectorized_review & get prediction
-    mixture = model.transform(vectorized_review)
-
-    # make into pretty dataframe
-    topics = pd.DataFrame(mixture)
-
-    # dummy code
-    # get most likely sentiment
-    result = max(topics[0])
+    result = predict_score(model, user_text)
 
     # display sentiment
     st.header('Prediction:')
-    if result == topics[0][0]:
+    if result <= 0.5:
         st.error("Didn't like the movie")
-    elif result == topics[0][1]:
+    elif result > 0.5:
         st.success("Liked the movie")

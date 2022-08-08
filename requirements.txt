@@ -9,6 +9,10 @@ streamlit
 numpy
 pandas
 scikit-learn
+gensim
+tensorflow
+tensorflow_hub
+tensorflow_text
 
 # tests/linter
 black
