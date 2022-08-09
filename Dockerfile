@@ -15,6 +15,6 @@ COPY scripts /scripts
 COPY saved_model /saved_model
 
 RUN pip install .
-RUN python -m nltk.downloader punkt
+RUN python -c "import nltk; nltk.download('punkt')"
 
 CMD streamlit run app.py
