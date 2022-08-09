@@ -63,4 +63,3 @@ if user_text is not None:
     if result <= 0.5:
         st.error("Didn't like the movie")
     elif result > 0.5:
-        st.success("Liked the movie")
