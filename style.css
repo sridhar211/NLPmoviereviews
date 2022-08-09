@@ -1,6 +1,25 @@
-/* Backgorund Image */
-p {
-  background-image: url(‘image (1).png’);
+/* Background Image */
+header[data-testid="stHeader"] {
+  background: url('https://raw.githubusercontent.com/sridhar211/NLPmoviereviews/master/images/popcorn.jpeg');
+  height: 10.875rem
+}
+button[kind="header"] > svg {
+  fill: white
+}
+
+.block-container {
+  padding: 12rem 1rem 10rem
+}
+
+.appview-container {
+  background: #fdd69c
+}
+
+@media (min-width: 576px) {
+  .block-container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 /* Title */
@@ -8,7 +27,7 @@ p {
   position: relative;
   flex: 1 1 0%;
   margin-left: calc(3rem);
-  color: rgb(209, 133, 144);
+  color: rgb(37,104,104);
 }
 
 /* Text */
@@ -21,5 +40,5 @@ p, ol, ul, dl {
 
 /* Review Text */
 .st-bw {
-  color: rgb(43, 59, 164);
+  color: rgb(41,106,106);
 }
