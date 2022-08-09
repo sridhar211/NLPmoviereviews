@@ -16,5 +16,6 @@ COPY saved_model /saved_model
 
 RUN pip install .
 RUN [ "python3", "-c", "import nltk; nltk.download('punkt', download_dir='/usr/local/nltk_data')" ]
+RUN [ "python3", "-c", "import nltk; nltk.download('stopwords', download_dir='/usr/local/nltk_data')" ]
 
 CMD streamlit run app.py
