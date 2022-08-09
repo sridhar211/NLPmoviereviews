@@ -1,3 +1,4 @@
+from dataclasses import asdict
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -38,6 +39,7 @@ st.set_page_config(
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+
 st.markdown("""
     # Movie Review Sentiment Analyser
     Applying deep learning with Natural Language Processing (NLP) for movie review sentiment analysis
@@ -47,7 +49,7 @@ st.markdown("""
 
 st.header("Let's write a review")
 
-user_text = st.text_area('Add your review:', ''' The best movie ever
+user_text = st.text_area("Add your review here and we'll predict how many stars you would give it:", ''' This was a really amazing movie.
     ''')
 
 if user_text is not None:
@@ -55,9 +57,10 @@ if user_text is not None:
     result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
+    full_stars = int(result*5)
+    empty_stars = 5 - full_stars
+    stars = ('★' * full_stars + '☆' * empty_stars)
+
     # display sentiment
-    st.header('Prediction:')
-    if result <= 0.5:
-        st.error("Didn't like the movie")
-    elif result > 0.5:
-        st.success("Liked the movie")
+    # st.header('Prediction:')
+    st.header(f'This is a {stars} review')
