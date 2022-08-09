@@ -7,4 +7,5 @@ raw_data/
 **/__pycache__/
 .env
 .vscode/
+saved_model/bert_model
 .python-version

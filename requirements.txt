@@ -9,10 +9,14 @@ streamlit
 numpy
 pandas
 scikit-learn
+gensim
+nltk
 tensorflow
+tensorflow_hub
+tensorflow_text
 # tensorflow-macos==2.5.0 # macos silicon compatible version
-tensorflow-datasets==4.4.0 # macos silicon compatible version
-nltk==3.6.7  # macos silicon compatible version
+# tensorflow-datasets
+
 
 # tests/linter
 black
@@ -21,17 +25,10 @@ flake8
 pytest
 yapf
 
-# API
-gcsfs
-google-cloud-storage
-mlflow
-s3fs
 
 # utilities
 six>=1.14
-joblib
-memoized-property
 termcolor
-ipykernel==6.6.1 # macos silicon compatible version
-astroid==2.7.3 # macos silicon compatible version
-ipywidgets==7.6.5 # macos silicon compatible version
+ipykernel==6.6.1  # for running jupyter notebooks in macos vscode
+astroid==2.7.3    # for running jupyter notebooks in macos vscode
+ipywidgets==7.6.5 # for running jupyter notebooks in macos vscode
