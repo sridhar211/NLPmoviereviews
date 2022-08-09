@@ -12,6 +12,7 @@ COPY app.py /app.py
 COPY setup.py /setup.py
 COPY scripts /scripts
 
+COPY tokenizer.pickle /tokenizer.pickle
 COPY saved_model /saved_model
 
 RUN pip install .

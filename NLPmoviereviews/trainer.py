@@ -3,6 +3,7 @@ from NLPmoviereviews.data import load_data_sent
 from NLPmoviereviews.utilities import preprocessing
 import gensim.downloader as api
 from NLPmoviereviews.utilities import padding
+import pickle
 
 
 if __name__=='__main__':

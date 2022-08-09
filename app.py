@@ -5,13 +5,13 @@ import gensim.downloader as api
 import tensorflow as tf
 
 from tensorflow.keras.models import load_model
-from NLPmoviereviews.main import predict_score
+from NLPmoviereviews.main import predict_score_1
 
 
 ################# MODEL ##################
 
 # parameters
-MODEL='saved_model/nlp_model/'
+MODEL='saved_model/nlp_1_model/'
 # MODEL='saved_model/bert_model/'
 
 
@@ -19,7 +19,6 @@ MODEL='saved_model/nlp_model/'
 #@st.cache
 def load_model_cache():
     model=load_model(MODEL)
-    #word2vec=api.load('glove-wiki-gigaword-100')
     return model
 
 model = load_model_cache()
@@ -50,12 +49,12 @@ st.markdown("""
 
 st.header("Let's write a review")
 
-user_text = st.text_area('Add your review:', '''
+user_text = st.text_area('Add your review:', ''' The best movie ever
     ''')
 
 if user_text is not None:
 
-    result = predict_score(model, user_text)
+    result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
     # display sentiment
