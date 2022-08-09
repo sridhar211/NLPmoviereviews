@@ -14,6 +14,7 @@ nltk
 tensorflow
 tensorflow_hub
 tensorflow_text
+tf-models-official
 
 # tests/linter
 black
