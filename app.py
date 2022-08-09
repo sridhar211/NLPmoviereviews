@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import gensim.downloader as api
+import tensorflow as tf
 
 from tensorflow.keras.models import load_model
 from NLPmoviereviews.main import predict_score
@@ -11,6 +12,7 @@ from NLPmoviereviews.main import predict_score
 
 # parameters
 MODEL='saved_model/nlp_model/'
+# MODEL='saved_model/bert_model/'
 
 
 # load model (cache so it only loads once and saves time)
@@ -54,6 +56,7 @@ user_text = st.text_area('Add your review:', '''
 if user_text is not None:
 
     result = predict_score(model, user_text)
+    # result = tf.sigmoid(model(tf.constant(user_text)))
 
     # display sentiment
     st.header('Prediction:')
