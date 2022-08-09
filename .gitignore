@@ -8,3 +8,4 @@ raw_data/
 .env
 .vscode/
 saved_model/bert_model
+.python-version

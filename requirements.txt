@@ -14,6 +14,9 @@ nltk
 tensorflow
 tensorflow_hub
 tensorflow_text
+# tensorflow-macos==2.5.0 # macos silicon compatible version
+# tensorflow-datasets
+
 
 # tests/linter
 black
@@ -25,3 +28,7 @@ yapf
 
 # utilities
 six>=1.14
+termcolor
+ipykernel==6.6.1  # for running jupyter notebooks in macos vscode
+astroid==2.7.3    # for running jupyter notebooks in macos vscode
+ipywidgets==7.6.5 # for running jupyter notebooks in macos vscode
