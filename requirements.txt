@@ -9,6 +9,10 @@ streamlit
 numpy
 pandas
 scikit-learn
+tensorflow
+# tensorflow-macos==2.5.0 # macos silicon compatible version
+tensorflow-datasets==4.4.0 # macos silicon compatible version
+nltk==3.6.7  # macos silicon compatible version
 
 # tests/linter
 black
@@ -28,3 +32,6 @@ six>=1.14
 joblib
 memoized-property
 termcolor
+ipykernel==6.6.1 # macos silicon compatible version
+astroid==2.7.3 # macos silicon compatible version
+ipywidgets==7.6.5 # macos silicon compatible version
