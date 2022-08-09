@@ -1,0 +1,25 @@
+/* Backgorund Image */
+p {
+  background-image: url(‘image (1).png’);
+}
+
+/* Title */
+.css-10trblm {
+  position: relative;
+  flex: 1 1 0%;
+  margin-left: calc(3rem);
+  color: rgb(209, 133, 144);
+}
+
+/* Text */
+p, ol, ul, dl {
+  margin: 0px 0px 1rem;
+  padding: 0px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Review Text */
+.st-bw {
+  color: rgb(43, 59, 164);
+}
