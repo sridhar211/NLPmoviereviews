@@ -57,7 +57,7 @@ if user_text is not None:
     result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
-    full_stars = int(result*5)
+    full_stars = round((result+0.1)*5)
     empty_stars = 5 - full_stars
     stars = ('★' * full_stars + '☆' * empty_stars)
 
