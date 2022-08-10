@@ -49,15 +49,15 @@ st.markdown("""
 
 st.header("Let's write a review")
 
-user_text = st.text_area("Add your review here and we'll predict how many stars you would give it:", ''' This was a really amazing movie.
-    ''')
+user_text = st.text_area("Add your review here and we'll predict how many stars you would give it:",
+                         '''This was a really amazing movie.''')
 
 if user_text is not None:
 
     result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
-    full_stars = int(result*5)
+    full_stars = round((result+0.1)*5)
     empty_stars = 5 - full_stars
     stars = ('★' * full_stars + '☆' * empty_stars)
 
