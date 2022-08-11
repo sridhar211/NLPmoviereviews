@@ -57,10 +57,20 @@ if user_text is not None:
     result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
-    full_stars = round((result+0.1)*5)
-    empty_stars = 5 - full_stars
-    stars = ('★' * full_stars + '☆' * empty_stars)
+    # # display sentiment
+    # full_stars = round((result+0.1)*5)
+    # empty_stars = 5 - full_stars
+    # stars = ('★' * full_stars + '☆' * empty_stars)
+    # st.header(f'This is a {stars} review')
 
-    # display sentiment
-    # st.header('Prediction:')
-    st.header(f'This is a {stars} review')
+
+    if result < 0.3 :
+        st.header(f'This is a ★☆☆☆☆ review')
+    elif result < 0.4 :
+        st.header(f'This is a ★★☆☆☆ review')
+    elif result < 0.6 :
+        st.header(f'This is a ★★★☆☆ review')
+    elif result < 0.8 :
+        st.header(f'This is a ★★★★☆ review')
+    else:
+        st.header(f'This is a ★★★★★ review')
