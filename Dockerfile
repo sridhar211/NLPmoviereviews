@@ -6,6 +6,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 ENV PORT 8501
+EXPOSE 8501
 
 COPY NLPmoviereviews /NLPmoviereviews
 COPY app.py /app.py
