@@ -5,7 +5,7 @@ COPY requirements.txt /requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-EXPOSE 8501
+ENV PORT 8501
 
 COPY NLPmoviereviews /NLPmoviereviews
 COPY app.py /app.py
