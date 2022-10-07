@@ -23,4 +23,4 @@ RUN [ "python3", "-c", "import nltk; nltk.download('stopwords', download_dir='/u
 RUN [ "python3", "-c", "import nltk; nltk.download('wordnet', download_dir='/usr/local/nltk_data')" ]
 RUN [ "python3", "-c", "import nltk; nltk.download('omw-1.4', download_dir='/usr/local/nltk_data')" ]
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "app.py", "--port=8501", "--host=0.0.0.0"]
