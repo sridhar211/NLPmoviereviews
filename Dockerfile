@@ -5,7 +5,6 @@ COPY requirements.txt /requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-ENV PORT 8501
 EXPOSE 8501
 
 COPY NLPmoviereviews /NLPmoviereviews
@@ -24,4 +23,4 @@ RUN [ "python3", "-c", "import nltk; nltk.download('stopwords', download_dir='/u
 RUN [ "python3", "-c", "import nltk; nltk.download('wordnet', download_dir='/usr/local/nltk_data')" ]
 RUN [ "python3", "-c", "import nltk; nltk.download('omw-1.4', download_dir='/usr/local/nltk_data')" ]
 
-CMD streamlit run app.py
+ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
